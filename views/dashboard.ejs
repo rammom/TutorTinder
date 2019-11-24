@@ -9,7 +9,8 @@
 		<div class="card mb-4">
 			<div class="card-body">
 				<h5 class="card-title"><%= user.sessions[i].course.code %></h5>
-				<p class="card-text">With <%= user.sessions[i].tutor.fname %> <%= user.sessions[i].tutor.lname %></p>
+				<p class="card-text">Tutor: <%= user.sessions[i].tutor.fname %> <%= user.sessions[i].tutor.lname %></p>
+				<p class="card-text">Student: <%= user.sessions[i].student.fname %> <%= user.sessions[i].student.lname %></p>
 				<p class="card-text"><%= user.sessions[i].time.start.toString() %></p>
 			</div>
 		</div>
