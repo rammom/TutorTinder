@@ -1,0 +1,53 @@
+<small>Availabilities are on a per hour basis</small>
+<br>
+<form action="/api/edit_availability" method="POST">
+	<div class="row">
+		<div class="col">
+			<h3>Monday</h3>
+			<% for (let i = 9; i <= 17; i++) { %>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="true" id="0.<%=i%>" name="0.<%=i%>"
+						<%= user.availability.monday.includes(i) ? "checked" : "" %>><%=i%> - <%=i+1%>
+				</div>
+			<% } %>
+		</div>
+		<div class="col">
+			<h3>Tuesday</h3>
+			<% for (let i = 9; i <= 17; i++) { %>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="true" id="1.<%=i%>" name="1.<%=i%>"
+						<%= user.availability.tuesday.includes(i) ? "checked" : "" %>><%=i%> - <%=i+1%>
+				</div>
+			<% } %>
+		</div>
+		<div class="col">
+			<h3>Wednesday</h3>
+			<% for (let i = 9; i <= 17; i++) { %>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="true" id="2.<%=i%>" name="2.<%=i%>"
+						<%= user.availability.wednesday.includes(i) ? "checked" : "" %>><%=i%> - <%=i+1%>
+				</div>
+			<% } %>
+		</div>
+		<div class="col">
+			<h3>Thursday</h3>
+			<% for (let i = 9; i <= 17; i++) { %>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="true" id="3.<%=i%>" name="3.<%=i%>"
+						<%= user.availability.thursday.includes(i) ? "checked" : "" %>><%=i%> - <%=i+1%>
+				</div>
+			<% } %>
+		</div>
+		<div class="col">
+			<h3>Friday</h3>
+			<% for (let i = 9; i <= 17; i++) { %>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="true" id="4.<%=i%>" name="4.<%=i%>"
+						<%= user.availability.friday.includes(i) ? "checked" : "" %>><%=i%> - <%=i+1%>
+				</div>
+			<% } %>
+		</div>
+	</div>
+	<br>
+	<button type="submit" class="btn btn-primary btn-block">Save</button>
+</form>

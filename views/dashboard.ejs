@@ -1,0 +1,41 @@
+
+<%- include ./partials/messages %>
+<h1 class="mt-4">Dashboard</h1>
+<p class="lead mb-3"><%= user.fname %> <%= user.lname %></p>
+
+<h2>Sessions</h2>
+<% for (let i = 0; i < user.sessions.length; i++) { %>
+	<div class="col-sm-6">
+		<div class="card mb-4">
+			<div class="card-body">
+				<h5 class="card-title"><%= user.sessions[i].course.code %></h5>
+				<p class="card-text">With <%= user.sessions[i].tutor.fname %> <%= user.sessions[i].tutor.lname %></p>
+				<p class="card-text"><%= user.sessions[i].time.start.toString() %></p>
+			</div>
+		</div>
+	</div>
+<% } %>
+<br>
+<h2>Get help</h2>
+<div class="row">
+	<% for (let i = 0; i < student_opportunities.length; i++) { %>
+		<% for (let j = 0; j < student_opportunities[i].hours.length; j++) { %>
+			<div class="col-sm-6">
+				<div class="card mb-4">
+					<div class="card-body">
+						<h5 class="card-title"><%= student_opportunities[i].course[0].code %></h5>
+						<p class="card-text">With <%= student_opportunities[i].tutor.fname %> <%= student_opportunities[i].tutor.lname %>, <%= student_opportunities[i].day %> from <%= student_opportunities[i].hours[j] %> to <%= student_opportunities[i].hours[j]+1 %></p>
+						<form action="/api/book_session" method="post">
+							<input type="hidden" name="student" value="<%= student_opportunities[i].student._id %>">
+							<input type="hidden" name="tutor" value="<%= student_opportunities[i].tutor._id %>">
+							<input type="hidden" name="course" value="<%= student_opportunities[i].course[0]._id %>">
+							<input type="hidden" name="day" value="<%= student_opportunities[i].day %>">
+							<input type="hidden" name="hour" value="<%= student_opportunities[i].hours[j] %>">
+							<button type="submit" class="btn btn-primary">Book</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	<% } %>
+</div>

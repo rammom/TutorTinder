@@ -1,0 +1,33 @@
+<form action="/api/edit_courses" method="POST">
+	<div class="row">
+		<div class="col">
+			<h3>Courses as a student</h3>
+			<% courses.forEach(function(course){ %>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="true" id="0.<%=course.code%>" name="0.<%=course.code%>"
+						<%= user.student.courses.includes(course._id) ? "checked" : "" %>><%= course.code %>
+				</div>
+			<% }) %>
+		</div>
+		<div class="col">
+			<h3>Courses as a tutor</h3>
+			<% courses.forEach(function(course){ %>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="true" id="1.<%=course.code%>" name="1.<%=course.code%>"
+						<%= user.tutor.courses.includes(course._id) ? "checked" : "" %>><%= course.code %>
+				</div>
+			<% }) %>
+			<br>
+			<div class="input-group">
+				<h4>Your fee:&nbsp;</h4>
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroupPrepend3">$</span>
+				</div>
+				<input type="text" class="form-control" id="fee" name="fee" placeholder="Fee"
+					aria-describedby="inputGroupPrepend3" value="<%= user.tutor.fee %>">
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<button type="submit" class="btn btn-primary btn-block">Save</button>
+</form>
