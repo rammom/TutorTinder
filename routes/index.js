@@ -4,6 +4,7 @@ const { isAuthenticated, isNotAuthenticated } = require('../config/auth');
 const Course = require('../models/Course');
 const User = require('../models/User');
 const Session = require('../models/Session');
+var ObjectId = require('mongoose').Types.ObjectId;
 const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 
 router.get('/', isNotAuthenticated,(req, res) => res.render('home'));
@@ -26,6 +27,7 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 	for (let i = 0; i < req.user.sessions.length; i++) {
 		console.log("========================");
 		console.log(typeof req.user.sessions[i]);
+		console.log(ObjectId.isValid(req.user.sessions[i]))
 		console.log(req.user.sessions[i]);
 		console.log("========================");
 
