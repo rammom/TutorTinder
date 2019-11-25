@@ -70,6 +70,7 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 			.catch(err => console.error(err));
 	}
 
+	console.log(req.user);
 	res.render('dashboard', {
 		user: req.user,
 		student_opportunities
