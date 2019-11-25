@@ -23,10 +23,13 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 			.catch(err => console.log(err));
 	}
 	
+	for (let i = 0; i < req.user.sessions.length; i++) {
+		console.log(typeof req.user.sessions[i]);
+	}
 	console.log(req.user.sessions);
-	req.user.sessions = req.user.sessions.filter(x => typeof(x) == 'object');
-	console.log('========================');
-	console.log(req.user.sessions);
+	// req.user.sessions = req.user.sessions.filter(x => typeof(x) == 'object');
+	// console.log('========================');
+	// console.log(req.user.sessions);
 
 	// find course matches here
 	student_opportunities = [];
