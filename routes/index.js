@@ -24,7 +24,10 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 			.catch(err => console.log(err));
 	}
 	
+	console.log(req.user.sessions);
 	req.user.sessions = req.user.sessions.filter(x => typeof(x) != 'object');
+	console.log('========================');
+	console.log(req.user.sessions);
 
 	// find course matches here
 	student_opportunities = [];
