@@ -25,7 +25,7 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 	}
 	
 	console.log(req.user.sessions);
-	req.user.sessions = req.user.sessions.filter(x => typeof(x) != 'object');
+	req.user.sessions = req.user.sessions.filter(x => typeof(x) != 'string');
 	console.log('========================');
 	console.log(req.user.sessions);
 
