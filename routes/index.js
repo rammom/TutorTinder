@@ -11,7 +11,6 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 	
 	// find sessions
 	let now = new Date();
-	let idx_to_remove = [];
 	for (let i = 0; i < req.user.sessions.length; i++) {
 		await Session.findOne({_id: req.user.sessions[i]})
 			.populate('course')
@@ -25,7 +24,7 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 	}
 	
 	console.log(req.user.sessions);
-	req.user.sessions = req.user.sessions.filter(x => typeof(x) == 'string');
+	req.user.sessions = req.user.sessions.filter(x => typeof(x) == 'object');
 	console.log('========================');
 	console.log(req.user.sessions);
 
