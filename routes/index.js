@@ -11,18 +11,20 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
 	
 	// find sessions
 	let now = new Date();
+	let idx_to_remove = [];
 	for (let i = 0; i < req.user.sessions.length; i++) {
 		await Session.findOne({_id: req.user.sessions[i]})
 			.populate('course')
 			.populate('student')
 			.populate('tutor')
 			.then(session => {
-				console.log(session);
 				if (session.time.start < now) return;
 				req.user.sessions[i] = session;
 			})
 			.catch(err => console.log(err));
 	}
+	
+	req.user.sessions = req.user.sessions.filter(x => typeof(x) != 'object');
 
 	// find course matches here
 	student_opportunities = [];
