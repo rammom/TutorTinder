@@ -34,7 +34,7 @@ router.post('/edit_availability', isAuthenticated, (req, res) => {
 		.catch(err => console.error(err));
 });
 
-router.post('/edit_courses', (req, res) => {
+router.post('/edit_courses', isAuthenticated,  (req, res) => {
 	User.findOne({_id: req.user._id})
 		.then(async user => {
 			if (!user) {
@@ -73,7 +73,7 @@ router.post('/edit_courses', (req, res) => {
 		.catch( err => console.error(err) );
 });
 
-router.post('/book_session', (req, res) => {
+router.post('/book_session', isAuthenticated, (req, res) => {
 	const {student, tutor, course, day, hour} = req.body;
 
 
@@ -123,18 +123,18 @@ router.post('/book_session', (req, res) => {
 
 });
 
-router.post('/init_courses', async (req, res) => {
-	let codes = ["COMP1000", "COMP1400", "COMP1410", "COMP2120", "COMP2140",
-					"COMP2310", "COMP2540", "COMP3110", "COMP3540", "COMP3670"]
-	for (let i = 0; i < codes.length; i++) {
-		let course = new Course({
-			code: codes[i]
-		});
-		await course.save()
-			.catch(err => console.log(err));
-	}
+// router.post('/init_courses', async (req, res) => {
+// 	let codes = ["COMP1000", "COMP1400", "COMP1410", "COMP2120", "COMP2140",
+// 					"COMP2310", "COMP2540", "COMP3110", "COMP3540", "COMP3670"]
+// 	for (let i = 0; i < codes.length; i++) {
+// 		let course = new Course({
+// 			code: codes[i]
+// 		});
+// 		await course.save()
+// 			.catch(err => console.log(err));
+// 	}
 
-	res.send('done.')
-});
+// 	res.send('done.')
+// });
 
 module.exports = router;
